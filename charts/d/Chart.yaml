@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
 name: database
-version: "0.0.1"
+version: "0.0.2"
 dependencies:
   - name: database-prime
     version: ~0.0.1
