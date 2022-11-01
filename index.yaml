@@ -13,6 +13,21 @@ entries:
     version: 0.0.1
   database:
   - apiVersion: v2
+    created: "2022-11-01T13:13:15.344344577Z"
+    dependencies:
+    - condition: database-prime.enabled
+      name: database-prime
+      repository: https://maniteja6799.github.io/chart-actions-demo/
+      version: ~0.0.1
+    digest: 91a1100ad2b997f6c1acd713bde8297482eb256a4dd1f9f4f145c6e3f6a6dd03
+    maintainers:
+    - email: email@example.com
+      name: Name
+    name: database
+    urls:
+    - https://github.com/maniteja6799/chart-actions-demo/releases/download/database-0.0.2/database-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     created: "2022-08-26T08:05:45.516018556Z"
     dependencies:
     - condition: database-prime.enabled
@@ -38,4 +53,4 @@ entries:
     urls:
     - https://github.com/maniteja6799/chart-actions-demo/releases/download/database-prime-0.0.1/database-prime-0.0.1.tgz
     version: 0.0.1
-generated: "2022-08-26T08:05:45.516032557Z"
+generated: "2022-11-01T13:13:15.344352777Z"
