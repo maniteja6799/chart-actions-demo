@@ -3,14 +3,14 @@ dependencies:
 - condition: database-prime.enabled
   name: database-prime
   repository: https://maniteja6799.github.io/chart-actions-demo/
-  version: 0.0.3
+  version: 0.0.5
 - alias: dPrime2
   condition: dPrime2.enabled
   name: generic-dep-installer
   repository: https://caraml-dev.github.io/helm-charts
-  version: ~0.2.1
+  version: 0.2.1
 maintainers:
 - email: email@example.com
   name: Name
 name: database
-version: 0.0.4
+version: 0.0.6
