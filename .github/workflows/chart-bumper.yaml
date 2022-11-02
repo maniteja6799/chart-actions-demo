@@ -36,8 +36,18 @@ jobs:
           python scripts/chart_bumper.py
           rm -f manifest.yaml
 
+      - name: Run chart-testing (list-changed)
+        id: list-changed
+        run: |
+          changed=$(ct list-changed --config ct.yaml)
+          if [[ -n "$changed" ]]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "charts_changed=$changed" >> $GITHUB_OUTPUT
+          fi
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
+        if: steps.list-changed.outputs.changed == 'true'
         with:
           commit-message: "feat: upgrade helm charts"
           title: "chore: upgrade helm charts minor versions"
