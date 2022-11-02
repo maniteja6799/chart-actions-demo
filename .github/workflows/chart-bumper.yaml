@@ -1,8 +1,8 @@
 name: Upgrade helm charts minor versions
 
 on:
-  schedule:
-    - cron: "0/5 * * * *" # every 10 mins
+  release:
+    types: [published]
 
 jobs:
   upgrade-helm-charts:
@@ -36,10 +36,11 @@ jobs:
         with:
           version: v3.5.1
 
-      - name: Run chart bumper script
+      - name: Run chart bumper script & update docs
         run: |
           python scripts/chart_bumper.py
           rm -f manifest.yaml
+          bash ./scripts/helm-docs.sh
 
       - name: Run chart-testing (list-changed)
         id: list-changed
