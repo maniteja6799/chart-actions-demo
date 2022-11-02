@@ -1,5 +1,12 @@
----
 containerPort: 9080
-
 database-prime:
   enabled: true
+dPrime2:
+  enabled: true
+  helmChart:
+    chart: database-prime
+    version: 0.0.1
+    repository: "https://maniteja6799.github.io/chart-actions-demo/"
+    release: dprime
+    namespace: dprime
+    createNamespace: true

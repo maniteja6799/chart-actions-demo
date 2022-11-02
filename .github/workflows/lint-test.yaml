@@ -34,12 +34,12 @@ jobs:
           changed=$(ct list-changed --config ct.yaml)
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> $GITHUB_OUTPUT
-            echo "charts_changed=$changed" >> $GITHUB_OUTPUT
           fi
 
       - name: Add dependency chart repos
         run: |
           helm repo add chart-actions-demo https://maniteja6799.github.io/chart-actions-demo/
+          helm repo add caraml https://caraml-dev.github.io/helm-charts
 
       - name: Run chart-testing (lint)
         run: ct lint --config ct.yaml

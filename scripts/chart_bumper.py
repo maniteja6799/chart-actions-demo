@@ -22,6 +22,51 @@ BUMP_MAJOR = os.environ.get("BUMP_MAJOR") == "true"
 BUMP_MINOR = os.environ.get("BUMP_MINOR") == "true"
 
 
+def update_gdi_dependency(chart_path : str, dependency: dict):
+    with open(chart_path + "/values.yaml") as f:
+        text = f.read()
+    chart_values: dict = yaml.safe_load(text)
+
+    # bump major or minor depending on set env variable
+    chart_version = chart_values[dependency["alias"]]["helmChart"]["version"]
+    version_major = f"{chart_version.split('.')[0]}" if not BUMP_MAJOR else "*"
+    version_minor = f"{chart_version.split('.')[1]}" if not BUMP_MAJOR else "*"
+    version = f"{version_major}.{version_minor}.*"
+    manifest = f"""
+sources:
+    lastMinorRelease:
+        kind: helmChart
+        spec:
+            url: "{chart_values[dependency["alias"]]["helmChart"]["repository"]}"
+            name: "{chart_values[dependency["alias"]]["helmChart"]["chart"]}" 
+            version: "{version}"
+conditions: {{}}
+targets:
+    chart:
+        name: Bump Chart version
+        kind: helmChart
+        spec:
+            Name: "{chart_path}"
+            file: "Chart.yaml"
+            versionIncrement: "patch"
+    chartValues:
+        name: Bump Chart dependencies
+        kind: helmChart
+        spec:
+            Name: "{chart_path}"
+            file: "values.yaml"
+            key: "{chart_values[dependency["alias"]]}.helmChart.version"
+            versionIncrement: "patch"
+"""
+
+    with open("manifest_gdi_dependant.yaml", "w") as f:
+        f.write(manifest)
+    subprocess.check_output(
+            "updatecli apply --config manifest_gdi_dependant.yaml".split(" "))
+    
+    os.remove("manifest_gdi_dependant.yaml")
+
+
 def update_chart(chart_path: str):
     """
     Given a path to a helm chart. Bump the version of the dependencies of this chart
@@ -72,6 +117,9 @@ targets:
 
         subprocess.check_output(
             "updatecli apply --config manifest.yaml".split(" "))
+
+        if dependency["name"] == "generic-dep-installer":
+            update_gdi_dependency(chart_path, dependency)
         
     print(f"Updating helm dependencies for chart: {chart_path}")
     subprocess.check_output(
