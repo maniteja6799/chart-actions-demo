@@ -48,7 +48,6 @@ jobs:
           changed=$(ct list-changed --config ct.yaml)
           if [[ -n "$changed" ]]; then
             echo "changed=true" >> $GITHUB_OUTPUT
-            echo "charts_changed=$changed" >> $GITHUB_OUTPUT
           fi
 
       - name: Create Pull Request
