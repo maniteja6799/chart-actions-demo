@@ -1,12 +1,11 @@
----
 apiVersion: v2
-name: database
-version: "0.0.2"
 dependencies:
-  - name: database-prime
-    version: ~0.0.1
-    repository: "https://maniteja6799.github.io/chart-actions-demo/"
-    condition: database-prime.enabled
+- condition: database-prime.enabled
+  name: database-prime
+  repository: https://maniteja6799.github.io/chart-actions-demo/
+  version: 0.0.3
 maintainers:
-  - email: email@example.com
-    name: Name
+- email: email@example.com
+  name: Name
+name: database
+version: 0.0.3
