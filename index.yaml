@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   component-c:
   - apiVersion: v2
+    created: "2022-11-02T12:42:22.71689965Z"
+    digest: 10a4e95e6faf65c4c2d019a453db608aff1f7ac02929802a5a7c43e7fe9cc4bd
+    maintainers:
+    - email: email@example.com
+      name: Name
+    name: component-c
+    urls:
+    - https://github.com/maniteja6799/chart-actions-demo/releases/download/component-c-0.0.2/component-c-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     created: "2022-08-26T08:05:45.400220318Z"
     digest: b23026526a19ca07823707cdc554e28427ffe7bbb77fd910e84b5420c156c9d7
     maintainers:
@@ -12,6 +22,26 @@ entries:
     - https://github.com/maniteja6799/chart-actions-demo/releases/download/component-c-0.0.1/component-c-0.0.1.tgz
     version: 0.0.1
   database:
+  - apiVersion: v2
+    created: "2022-11-02T12:42:22.894598554Z"
+    dependencies:
+    - condition: database-prime.enabled
+      name: database-prime
+      repository: https://maniteja6799.github.io/chart-actions-demo/
+      version: 0.0.3
+    - alias: dPrime2
+      condition: dPrime2.enabled
+      name: generic-dep-installer
+      repository: https://caraml-dev.github.io/helm-charts
+      version: ~0.2.1
+    digest: 981e16d2b2d39c67df679df3457a433e2e1147ef4f4c71453d30c293ad523928
+    maintainers:
+    - email: email@example.com
+      name: Name
+    name: database
+    urls:
+    - https://github.com/maniteja6799/chart-actions-demo/releases/download/database-0.0.4/database-0.0.4.tgz
+    version: 0.0.4
   - apiVersion: v2
     created: "2022-11-02T04:06:58.886768667Z"
     dependencies:
@@ -59,6 +89,16 @@ entries:
     version: 0.0.1
   database-prime:
   - apiVersion: v2
+    created: "2022-11-02T12:42:23.057068908Z"
+    digest: 434f49142e975e35206ded7d0167ece7fcf103a44a48ea590f6cc2bf008ee5f8
+    maintainers:
+    - email: email@example.com
+      name: Name
+    name: database-prime
+    urls:
+    - https://github.com/maniteja6799/chart-actions-demo/releases/download/database-prime-0.0.4/database-prime-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
     created: "2022-11-01T13:17:59.946798803Z"
     digest: 851eb04454557ede43954f28f841bf6801e7d042ff5e8fc17181985dbbaa774d
     maintainers:
@@ -78,4 +118,4 @@ entries:
     urls:
     - https://github.com/maniteja6799/chart-actions-demo/releases/download/database-prime-0.0.1/database-prime-0.0.1.tgz
     version: 0.0.1
-generated: "2022-11-02T04:06:58.886938174Z"
+generated: "2022-11-02T12:42:23.057189709Z"
