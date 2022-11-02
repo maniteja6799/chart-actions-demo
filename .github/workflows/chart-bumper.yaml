@@ -1,8 +1,9 @@
 name: Upgrade helm charts minor versions
 
 on:
-  release:
-    types: [published]
+  workflow_run:
+    workflows: ["Release Charts"]
+    types: [completed]
 
 jobs:
   upgrade-helm-charts:
