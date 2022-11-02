@@ -1,0 +1,25 @@
+
+sources:
+    lastMinorRelease:
+        kind: helmChart
+        spec:
+            url: "https://maniteja6799.github.io/chart-actions-demo/"
+            name: "database-prime" 
+            version: "0.0.*"
+conditions: {}
+targets:
+    chart:
+        name: Bump Chart version
+        kind: helmChart
+        spec:
+            Name: "/home/runner/work/chart-actions-demo/chart-actions-demo/charts/d"
+            file: "Chart.yaml"
+            versionIncrement: "patch"
+    chartValues:
+        name: Bump Chart dependencies
+        kind: helmChart
+        spec:
+            Name: "/home/runner/work/chart-actions-demo/chart-actions-demo/charts/d"
+            file: "values.yaml"
+            key: "{'enabled': True, 'helmChart': {'chart': 'database-prime', 'version': '0.0.1', 'repository': 'https://maniteja6799.github.io/chart-actions-demo/', 'release': 'dprime', 'namespace': 'dprime', 'createNamespace': True}}.helmChart.version"
+            versionIncrement: "patch"
