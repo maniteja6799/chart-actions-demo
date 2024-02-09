@@ -47,11 +47,11 @@ jobs:
           generator-tag: v7.1.0
           openapi-file: merlin/swagger.yaml
           config-file: merlin/openapi-sdk-codegen.yaml
-          command-args: "--model-package models/client"
+          command-args: "--package-name models/client"
 
       - name: Sync changes from ${{ github.event.inputs.module }} repos - 2
         run: |
           ls
-          ls python-client
           tree python-client
+          cat python-client/models/client/__init__.py
           
