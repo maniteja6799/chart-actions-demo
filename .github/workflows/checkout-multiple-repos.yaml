@@ -39,14 +39,16 @@ jobs:
           repository: caraml-dev/merlin
           path: './merlin'
 
-
       - name: Generate code
-        uses: hatamiarash7/openapi-generator@v0.2.0
+        uses: openapi-generators/openapitools-generator-action@v1
         with:
           generator: python
+          docker-image: openapitools/openapi-generator-cli:v7.1.0
           openapi-file: merlin/swagger.yaml
           config-file: merlin/openapi-sdk-codegen.yaml
-          output-dir: packages/caraml/models/client
+          command-args: |
+            --output packages/caraml/models/client
+            --model-package models/client
 
       - name: Sync changes from ${{ github.event.inputs.module }} repos - 2
         run: |
