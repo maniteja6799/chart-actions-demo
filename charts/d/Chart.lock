@@ -1,9 +1,9 @@
 dependencies:
 - name: database-prime
   repository: https://maniteja6799.github.io/chart-actions-demo/
-  version: 0.0.3
+  version: 0.0.5
 - name: generic-dep-installer
   repository: https://caraml-dev.github.io/helm-charts
   version: 0.2.1
-digest: sha256:fc90c056e70c68201355d8e54aeeb3dcad04e55af6c90e8b8796a5f498183ec5
-generated: "2022-11-02T17:09:04.194506+05:30"
+digest: sha256:c5de01a62a8876edbeb38cb2106dfc7c0cb8c084959745859822d7c17469adc6
+generated: "2024-02-09T11:01:01.289915183Z"
