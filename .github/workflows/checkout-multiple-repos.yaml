@@ -46,9 +46,9 @@ jobs:
           docker-image: openapitools/openapi-generator-cli:v7.1.0
           openapi-file: merlin/swagger.yaml
           config-file: merlin/openapi-sdk-codegen.yaml
-          command-args: |
-            --output packages/caraml/models/client
-            --model-package models/client
+          # command-args: |
+          #   --output packages/caraml/models/client
+          #   --model-package models/client
 
       - name: Sync changes from ${{ github.event.inputs.module }} repos - 2
         run: |
