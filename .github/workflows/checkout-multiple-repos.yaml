@@ -53,5 +53,6 @@ jobs:
         run: |
           ls
           tree python-client
+          cat python-client/models/__init__.py
           cat python-client/models/client/__init__.py
           
