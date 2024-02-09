@@ -1,0 +1,44 @@
+name: Remote Generated Client Sync
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      module:
+        required: true
+        description: "module name"
+      sdk_client_dir:
+        required: false
+        description: "folder to copy over"
+        default: "python/sdk/client"
+      ref_name:
+        required: true
+        description: "The branch or tag to copy from"
+      ref_type:
+        required: true
+        description: "the type of ref. Valid values are branch or tag"
+  repository_dispatch:
+
+jobs:
+  sync-sdk-client:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout caraml-dev/caraml-sdk repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync changes from ${{ github.event.inputs.module }} repos -1
+        run: |
+          ls
+
+      - name: Checkout caraml-dev/merlin repo
+        uses: actions/checkout@v4
+        with:
+          repository: caraml-dev/merlin
+          path: './merlin'
+
+      - name: Sync changes from ${{ github.event.inputs.module }} repos - 2
+        run: |
+          ls
